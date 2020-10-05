@@ -9,9 +9,12 @@ int main(int argc, char** argv)
     ros::Publisher = n.advertise<std_msgs::Int32>("/topic",1000);
     ros::Rate loop_rate(1);
     int a;
+    ros::Duration(5).sleep();
     while(std::cin >> a)
     {
-        pub.publish(a);
+        std_msgs::Int32 msg;
+        msg.data = a;
+        pub.publish(msg);
         loop_rate.sleep();
     }
     ros::spinOnce();
